@@ -197,7 +197,7 @@ const Projects = () => {
       title: "ColdCraft",
       description:
         "An AI-powered web app that generates high-converting, personalized cold emails for job seekers and freelancers.",
-      category: "Coming Soon...",
+      category: "Frontend + AI",
       image: "https://imgs.search.brave.com/8r1pp7D7t6ew5szEuqdiYDmPnP9HxYJKpnIdEeYhK68/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJhY2Nlc3Mu/Y29tL2Z1bGwvMjU4/MDI5MC5qcGc", // replace with actual screenshot
       techStack: [
         "react",
