@@ -1,0 +1,129 @@
+/* ==================== SITE CANVAS ==================== */
+.site-canvas {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ==================== GLOBAL BACKGROUND ==================== */
+.global-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 50%, #0A0A0A 100%);
+  pointer-events: none;
+}
+
+/* ==================== PARTICLE CANVAS ==================== */
+.global-particle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+/* ==================== ANIMATED SHAPES ==================== */
+.global-bg-shapes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.global-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+  transition: transform 0.3s ease-out;
+}
+
+.global-shape-1 {
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  top: -15%;
+  right: -10%;
+  animation: float-shape 20s ease-in-out infinite;
+}
+
+.global-shape-2 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #00A8E8, #0066CC);
+  bottom: -10%;
+  left: -5%;
+  animation: float-shape 25s ease-in-out infinite reverse;
+}
+
+.global-shape-3 {
+  width: 350px;
+  height: 350px;
+  background: linear-gradient(135deg, #FF6B6B, #FF1744);
+  top: 50%;
+  left: 30%;
+  animation: float-shape 30s ease-in-out infinite;
+}
+
+@keyframes float-shape {
+  0%, 100% { 
+    transform: translate(0, 0) rotate(0deg) scale(1); 
+  }
+  33% { 
+    transform: translate(50px, -50px) rotate(120deg) scale(1.1); 
+  }
+  66% { 
+    transform: translate(-50px, 50px) rotate(240deg) scale(0.9); 
+  }
+}
+
+/* ==================== GRID PATTERN ==================== */
+.global-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.5;
+}
+
+/* ==================== GRADIENT ORBS (for about section) ==================== */
+.global-background::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  filter: blur(100px);
+  opacity: 0.15;
+  top: 100vh;
+  left: -10%;
+  animation: pulse-orb 8s ease-in-out infinite;
+}
+
+.global-background::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #00A8E8, #0066CC);
+  filter: blur(100px);
+  opacity: 0.15;
+  top: 120vh;
+  right: -5%;
+  animation: pulse-orb 10s ease-in-out infinite reverse;
+}
+
+@keyframes pulse-orb {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.2;
+  }
+}

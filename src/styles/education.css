@@ -1,0 +1,727 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Syne:wght@400;600;700;800&display=swap');
+
+/* ==================== EDUCATION SECTION ==================== */
+.education-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 4rem 0;
+  background: transparent;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* ==================== CONTAINER ==================== */
+.education-container {
+  position: relative;
+  z-index: 10;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+/* ==================== HEADER ==================== */
+.education-header {
+  margin-bottom: 5rem;
+  text-align: center;
+}
+
+.section-label-education {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+}
+
+.education-section.visible .section-label-education {
+  animation: fade-slide-up 0.8s ease-out 0.2s forwards;
+}
+
+.label-line-education {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FFD700);
+}
+
+.label-text-education {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #FFD700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.education-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 0 0 1rem 0;
+  opacity: 0;
+}
+
+.education-section.visible .education-title {
+  animation: fade-slide-up 0.8s ease-out 0.4s forwards;
+}
+
+.title-part {
+  display: inline-block;
+  color: #FFFFFF;
+}
+
+.title-gradient {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-left: 1rem;
+}
+
+.education-subtitle {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  color: #999999;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0;
+}
+
+.education-section.visible .education-subtitle {
+  animation: fade-slide-up 0.8s ease-out 0.6s forwards;
+}
+
+/* ==================== CERTIFICATES GRID ==================== */
+.certificates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 3rem;
+  opacity: 0;
+}
+
+.education-section.visible .certificates-grid {
+  animation: fade-slide-up 1s ease-out 0.8s forwards;
+}
+
+/* ==================== CERTIFICATE CARD ==================== */
+.certificate-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.95) 0%, rgba(30, 30, 30, 0.9) 100%);
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.education-section.visible .certificate-card {
+  animation: certificate-appear 0.8s ease-out forwards;
+}
+
+@keyframes certificate-appear {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.certificate-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 80px -20px rgba(255, 215, 0, 0.4);
+}
+
+.certificate-card.featured {
+  grid-column: span 1;
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(40, 30, 20, 0.9) 100%);
+}
+
+.certificate-card.featured:hover {
+  box-shadow: 0 40px 100px -20px rgba(255, 215, 0, 0.5);
+}
+
+/* ==================== DECORATIVE BORDER ==================== */
+.certificate-border {
+  position: absolute;
+  inset: 15px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.border-corner {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #FFD700;
+}
+
+.corner-tl {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+  border-top-left-radius: 8px;
+}
+
+.corner-tr {
+  top: -2px;
+  right: -2px;
+  border-left: none;
+  border-bottom: none;
+  border-top-right-radius: 8px;
+}
+
+.corner-bl {
+  bottom: -2px;
+  left: -2px;
+  border-right: none;
+  border-top: none;
+  border-bottom-left-radius: 8px;
+}
+
+.corner-br {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+  border-bottom-right-radius: 8px;
+}
+
+/* ==================== CERTIFICATE SEAL ==================== */
+.certificate-seal {
+  position: absolute;
+  top: -25px;
+  right: 30px;
+  width: 80px;
+  height: 80px;
+  z-index: 5;
+}
+
+.seal-outer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px -8px rgba(255, 215, 0, 0.6);
+}
+
+
+.seal-inner {
+  width: 60px;
+  height: 60px;
+  background: rgba(10, 10, 10, 0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+}
+
+.seal-inner svg {
+  width: 32px;
+  height: 32px;
+  color: #FFD700;
+}
+
+.seal-ribbon {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 25px solid #FFD700;
+}
+
+.seal-ribbon::before {
+  content: '';
+  position: absolute;
+  top: -25px;
+  left: -15px;
+  width: 30px;
+  height: 8px;
+  background: #FFA500;
+}
+
+/* ==================== STATUS BADGE ==================== */
+.status-badge {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  padding: 0.4rem 1rem;
+  background: rgba(255, 215, 0, 0.15);
+  border: 1.5px solid rgba(255, 215, 0, 0.4);
+  border-radius: 50px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #FFD700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  z-index: 3;
+}
+
+.status-badge.pursuing {
+  background: rgba(100, 255, 100, 0.15);
+  border-color: rgba(100, 255, 100, 0.4);
+  color: #4CAF50;
+}
+
+/* ==================== CERTIFICATE CONTENT ==================== */
+.certificate-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 1rem;
+}
+
+.level-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #999999;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-align: center;
+}
+
+.degree-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.certificate-card.featured .degree-title {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.institution-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #CCCCCC;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.institution-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.institution-icon svg {
+  width: 100%;
+  height: 100%;
+  color: #FFD700;
+}
+
+/* ==================== DIVIDER ==================== */
+.certificate-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+  margin: 0.5rem 0;
+}
+
+/* ==================== CERTIFICATE DETAILS ==================== */
+.certificate-details {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.detail-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1.5px solid rgba(255, 215, 0, 0.3);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.certificate-card:hover .detail-icon {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.5);
+  transform: scale(1.1);
+}
+
+.detail-icon svg {
+  width: 20px;
+  height: 20px;
+  color: #FFD700;
+}
+
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.detail-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #999999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detail-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #FFD700;
+}
+
+/* ==================== DECORATIVE PATTERN ==================== */
+.decorative-pattern {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  opacity: 0.5;
+}
+
+.pattern-line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), transparent);
+}
+
+.pattern-dot {
+  width: 6px;
+  height: 6px;
+  background: #FFD700;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* ==================== WATERMARK ==================== */
+.certificate-watermark {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 120px;
+  height: 120px;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.certificate-watermark svg {
+  width: 100%;
+  height: 100%;
+  color: #FFD700;
+  transform: rotate(-15deg);
+}
+
+/* ==================== DECORATIONS ==================== */
+.education-decorations {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.12;
+  animation: float-orb 25s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #FFD700 0%, transparent 70%);
+  top: -150px;
+  right: -150px;
+}
+
+.orb-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #FFA500 0%, transparent 70%);
+  bottom: -100px;
+  left: -100px;
+  animation-delay: -12s;
+}
+
+.floating-icon {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  opacity: 0.05;
+  color: #FFD700;
+  animation: float-icon 20s ease-in-out infinite;
+}
+
+.floating-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.icon-1 {
+  top: 15%;
+  right: 8%;
+  animation-delay: -5s;
+}
+
+.icon-2 {
+  top: 60%;
+  left: 5%;
+  animation-delay: -10s;
+}
+
+.icon-3 {
+  bottom: 20%;
+  right: 12%;
+  animation-delay: -15s;
+}
+
+@keyframes float-orb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -40px) scale(1.1);
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.9);
+  }
+}
+
+@keyframes float-icon {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(20px, -20px) rotate(90deg);
+  }
+  50% {
+    transform: translate(0, -40px) rotate(180deg);
+  }
+  75% {
+    transform: translate(-20px, -20px) rotate(270deg);
+  }
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+  .education-container {
+    padding: 0 3rem;
+  }
+  
+  .certificates-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  
+  .certificate-card.featured {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .education-section {
+    padding: 5rem 0;
+  }
+  
+  .education-container {
+    padding: 0 2rem;
+  }
+  
+  .education-header {
+    margin-bottom: 3rem;
+  }
+  
+  .education-title {
+    font-size: 3rem;
+  }
+  
+  .title-gradient {
+    margin-left: 0;
+    display: block;
+  }
+  
+  .certificates-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .certificate-card {
+    padding: 2.5rem 2rem;
+  }
+  
+  .certificate-seal {
+    width: 70px;
+    height: 70px;
+    top: -20px;
+    right: 20px;
+  }
+  
+  .seal-inner {
+    width: 52px;
+    height: 52px;
+  }
+  
+  .seal-inner svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .degree-title {
+    font-size: 1.5rem;
+  }
+  
+  .certificate-card.featured .degree-title {
+    font-size: 1.65rem;
+  }
+  
+  .certificate-details {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .education-container {
+    padding: 0 1.5rem;
+  }
+  
+  .education-title {
+    font-size: 2.5rem;
+  }
+  
+  .education-subtitle {
+    font-size: 1rem;
+  }
+  
+  .certificates-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .certificate-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .certificate-border {
+    inset: 12px;
+  }
+  
+  .border-corner {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .certificate-seal {
+    width: 60px;
+    height: 60px;
+    top: -15px;
+    right: 15px;
+  }
+  
+  .seal-inner {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .seal-inner svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .seal-ribbon {
+    border-left-width: 12px;
+    border-right-width: 12px;
+    border-top-width: 20px;
+  }
+  
+  .degree-title {
+    font-size: 1.35rem;
+  }
+  
+  .certificate-card.featured .degree-title {
+    font-size: 1.5rem;
+  }
+  
+  .institution-name {
+    font-size: 0.9rem;
+  }
+  
+  .certificate-details {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .detail-item {
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .detail-content {
+    align-items: flex-start;
+  }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
