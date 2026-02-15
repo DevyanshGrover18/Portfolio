@@ -205,8 +205,8 @@ const Projects = () => {
         "groq",
       ],
       featured: true,
-      liveLink: null, // replace if deployed
-      githubLink: null, // private if SaaS
+      liveLink: 'https://cold-craft-xi.vercel.app/', // replace if deployed
+      githubLink: "https://github.com/DevyanshGrover18/ColdCraft", // private if SaaS
       features: [
         "AI-generated personalized cold emails",
         "Context-based prompt engineering",
