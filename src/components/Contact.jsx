@@ -49,7 +49,7 @@ const Contact = () => {
     setFormStatus({ type: "loading", message: "Sending message..." });
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/send-email`, {
+      const response = await fetch(`/api/send-email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

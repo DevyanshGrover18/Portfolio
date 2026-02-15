@@ -5,7 +5,9 @@ import { Resend } from 'resend';
 
 const PORT = 8000;
 const app = express()
-app.use(cors())
+app.use(cors({
+  origin: 'https://devyansh-grover-portfolio.vercel.app/'
+}))
 app.use(express.json());
 
 
