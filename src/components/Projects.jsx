@@ -89,8 +89,8 @@ const Projects = () => {
         "jwt",
       ],
       featured: true,
-      liveLink: null, // replace with actual domain
-      githubLink: null, // private SaaS product
+      liveLink: 'https://mere-forms.vercel.app/login',
+      githubLink: "https://github.com/DevyanshGrover18/MereForms", // private SaaS product
       features: [
         "Drag-and-drop form builder interface",
         "Dynamic field types (text, select, checkbox, file, etc.)",
@@ -205,8 +205,8 @@ const Projects = () => {
         "groq",
       ],
       featured: true,
-      liveLink: 'https://cold-craft-xi.vercel.app/', // replace if deployed
-      githubLink: "https://github.com/DevyanshGrover18/ColdCraft", // private if SaaS
+      liveLink: 'https://cold-craft-xi.vercel.app/',
+      githubLink: "https://github.com/DevyanshGrover18/ColdCraft",
       features: [
         "AI-generated personalized cold emails",
         "Context-based prompt engineering",
