@@ -81,7 +81,6 @@ const Projects = () => {
         "https://imgs.search.brave.com/I7Ce6ACPe9ESsKswzsq2fQHGJEx5d1oDzFZfXn03pYM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAxLzEyLzc0LzMz/LzM2MF9GXzExMjc0/MzM4OV8ycnJPSGMy/ODIxQXc2OVh1Zmh1/M09BN3k4Sk1KTk9E/Ry5qcGc", // replace with actual screenshot
       techStack: [
         "react",
-        "ts",
         "nodejs",
         "express",
         "mongodb",
@@ -200,7 +199,7 @@ const Projects = () => {
       category: "Frontend + AI",
       image:
         "https://imgs.search.brave.com/8r1pp7D7t6ew5szEuqdiYDmPnP9HxYJKpnIdEeYhK68/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJhY2Nlc3Mu/Y29tL2Z1bGwvMjU4/MDI5MC5qcGc", // replace with actual screenshot
-      techStack: ["react", "express", "groq"],
+      techStack: ["react","node", "express", "groq"],
       featured: true,
       liveLink: "https://cold-craft-xi.vercel.app/",
       githubLink: "https://github.com/DevyanshGrover18/ColdCraft",
