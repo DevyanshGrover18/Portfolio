@@ -148,10 +148,10 @@ const AdminLogin = () => {
                 <button
                   key={`${key}-${index}`}
                   type="button"
-                  className={`admin_login_key ${key === "backspace" ? "is-alt" : ""}`}
+                  className={`admin_login_key flex justify-center items-center ${key === "backspace" ? "is-alt" : ""}`}
                   onClick={() => handleKeypad(key)}
                 >
-                  {key === "backspace" ? <Delete size={18} /> : key}
+                  {key === "backspace" ? <Delete size={18} className="h-7 w-7" /> : key}
                 </button>
               ) : (
                 <div
