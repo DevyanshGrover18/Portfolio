@@ -1,0 +1,54 @@
+/* ─── Paragraph Block ───────────────────────────────────────────────────────── */
+.paragraph-block {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: text;
+  min-height: unset;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid transparent;
+  overflow: visible; /* ← add this — was clipping the bullet markers */
+}
+
+.paragraph-editor ul,
+.paragraph-editor ol {
+  padding-left: 1.5rem; /* ← enough room for the marker */
+  margin: 0.25rem 0; /* ← was 1rem, tighten it */
+  color: #cccccc;
+}
+
+.paragraph-editor ul {
+  list-style-type: disc; /* ← explicitly set, browsers sometimes reset this */
+}
+
+.paragraph-editor ol {
+  list-style-type: decimal; /* ← same */
+}
+
+.paragraph-editor li {
+  margin: 10px 0; /* ← was 0.5rem, much tighter */
+  padding-left: 0.25rem;
+}
+.paragraph-editor li p {
+  margin: 0;
+}
+
+.paragraph-editor li::marker {
+  color: #ffd700; /* ← gold bullet/number to match your theme */
+}
+
+.preview-mode .paragraph-editor ul {
+  list-style-type: disc;
+}
+
+.preview-mode .paragraph-editor ol {
+  list-style-type: decimal;
+}
+
+.preview-mode .paragraph-editor li {
+  margin: 0.1rem 0; /* ← override the tighter edit spacing slightly */
+}
+
+.preview-mode .paragraph-editor li::marker {
+  color: #ffd700;
+}

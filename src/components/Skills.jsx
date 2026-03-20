@@ -70,6 +70,8 @@ const Skills = () => {
     },
     { name: "Postman", icon: "postman", category: "tools", level: "Advanced" },
     { name: "Vercel", icon: "vercel", category: "tools", level: "Advanced" },
+    { name: "Codex", icon: "chatgpt", category: "tools", level: "Advanced" },
+    { name: "Claude", icon: "claude", category: "tools", level: "Advanced" },
     {
       name: "Python",
       icon: "python",

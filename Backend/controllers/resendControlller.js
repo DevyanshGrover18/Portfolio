@@ -1,42 +1,27 @@
-import express from 'express';
-import cors from 'cors'
-import './config/env.js'
-import { Resend } from 'resend';
-
-const PORT = 8000;
-const app = express()
-app.use(cors({
-  origin: 'https://devyansh-grover-portfolio.vercel.app/'
-}))
-app.use(express.json());
-
+import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-app.post('/api/send-email', async (req, res)=>{
-  // Only allow POST requests
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+export const sendEmail = async (req, res) => {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
     const { name, email, subject, message } = req.body;
 
-    // Validate required fields
     if (!name || !email || !subject || !message) {
-      return res.status(400).json({ error: 'All fields are required' });
+      return res.status(400).json({ error: "All fields are required" });
     }
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return res.status(400).json({ error: 'Invalid email format' });
+      return res.status(400).json({ error: "Invalid email format" });
     }
 
-    // Send email using Resend
     const data = await resend.emails.send({
-      from: 'Portfolio Contact <onboarding@resend.dev>', 
-      to: ['devyansh.grover348@gmail.com'],
+      from: "Portfolio Contact <onboarding@resend.dev>",
+      to: ["devyansh.grover348@gmail.com"],
       replyTo: email,
       subject: `Portfolio Contact: ${subject}`,
       html: `
@@ -125,9 +110,9 @@ ${message}
                           This message was sent from your portfolio contact form
                         </p>
                         <p style="margin: 8px 0 0; color: #6c757d; font-size: 12px; text-align: center;">
-                          Received on ${new Date().toLocaleString('en-US', { 
-                            dateStyle: 'full', 
-                            timeStyle: 'short' 
+                          Received on ${new Date().toLocaleString("en-US", {
+                            dateStyle: "full",
+                            timeStyle: "short",
                           })}
                         </p>
                       </td>
@@ -142,20 +127,15 @@ ${message}
       `,
     });
 
-    return res.status(200).json({ 
-      success: true, 
-      message: 'Email sent successfully',
-      id: data.id 
+    return res.status(200).json({
+      success: true,
+      message: "Email sent successfully",
+      id: data.id,
     });
-
   } catch (error) {
-    console.error('Error sending email:', error);
-    return res.status(500).json({ 
-      error: 'Failed to send email. Please try again later.' 
+    console.error("Error sending email:", error);
+    return res.status(500).json({
+      error: "Failed to send email. Please try again later.",
     });
   }
-})
-
-app.listen(PORT, ()=>{
-    console.log("Server Running")
-})
+};

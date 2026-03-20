@@ -557,10 +557,12 @@
   
   .timeline-line {
     left: 20px;
+    top: 24px;
+    bottom: 48px;
   }
   
   .timeline-dot {
-    left: -20px;
+    left: -2px;
     width: 40px;
     height: 40px;
   }
@@ -577,11 +579,15 @@
   .card-header {
     flex-direction: column;
     gap: 1.5rem;
+    padding-bottom: 1.5rem;
   }
   
   .header-right {
+    flex-wrap: wrap;
+    flex-direction: row;
     align-items: flex-start;
     width: 100%;
+    gap: 0.75rem;
   }
   
   .job-title {
@@ -595,11 +601,21 @@
   .tech-stack-grid {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   }
+
+  .timeline-end {
+    gap: 1rem;
+    margin-top: 2rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .experience-section {
+    min-height: auto;
+    padding: 4rem 0;
+  }
+
   .experience-container {
-    padding: 0 1.5rem;
+    padding: 0 1rem;
   }
   
   .experience-title {
@@ -611,23 +627,53 @@
   }
   
   .timeline {
-    padding-left: 30px;
+    padding-left: 0;
+  }
+
+  .timeline-line,
+  .timeline-dot {
+    display: none;
   }
   
   .experience-card {
-    padding: 1.5rem;
+    padding: 1.25rem;
+    border-radius: 20px;
   }
   
   .job-title {
     font-size: 1.35rem;
   }
+
+  .company-name {
+    font-size: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .duration-badge,
+  .location-badge {
+    width: 100%;
+    justify-content: center;
+    padding: 0.65rem 0.9rem;
+    text-align: center;
+  }
   
   .experience-description {
     font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .achievements-list li {
+    gap: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .achievements-list li svg {
+    width: 18px;
+    height: 18px;
   }
   
   .tech-stack-grid {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
   }
   
@@ -642,6 +688,14 @@
   
   .tech-name {
     font-size: 0.75rem;
+  }
+
+  .timeline-end {
+    margin-top: 1.5rem;
+  }
+
+  .end-text {
+    font-size: 0.8rem;
   }
 }
 

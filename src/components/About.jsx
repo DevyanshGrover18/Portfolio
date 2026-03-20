@@ -58,7 +58,7 @@ const About = () => {
   ];
 
   const expertise = [
-    { skill: "React.js", level: 95 },
+    { skill: "React.js & Next.js", level: 95 },
     { skill: "Node.js & Express", level: 90 },
     { skill: "UI/UX Design", level: 85 },
     { skill: "Database Design", level: 88 },

@@ -1,7 +1,10 @@
 import "../styles/navbar.css";
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -15,75 +18,93 @@ const Navbar = () => {
     { id: "projects", label: "Projects", icon: "◇" },
     { id: "experience", label: "Experience", icon: "◆" },
     { id: "education", label: "Education", icon: "◇" },
+    { id: "blogs", label: "Blogs", icon: "◆", isRoute: true },
+    { id: "contacts", label: "Contacts", icon: "◇" },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Check if scrolled
       setScrolled(currentScrollY > 50);
 
-      // Show/hide navbar based on scroll direction
       if (currentScrollY < lastScrollY) {
-        // Scrolling up
         setVisible(true);
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down and past 100px
         setVisible(false);
       }
 
-      // Always show navbar at the top of the page
       if (currentScrollY < 50) {
         setVisible(true);
       }
 
       setLastScrollY(currentScrollY);
 
-      // Determine active section
-      const sections = navItems.map(item => item.id);
-      let current = "home";
+      // Only track sections on home page
+      if (location.pathname === '/' || location.pathname === '/home') {
+        const sections = navItems.filter(item => !item.isRoute).map((item) => item.id);
+        let current = "home";
 
-      for (let section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            current = section;
+        for (let section of sections) {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top <= 100 && rect.bottom >= 100) {
+              current = section;
+            }
           }
         }
-      }
 
-      setActiveSection(current);
+        setActiveSection(current);
+      } else if (location.pathname === '/blogs') {
+        setActiveSection('blogs');
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, location]);
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+  const handleNavClick = (item) => {
+    if (item.isRoute) {
+      // Navigate to route
+      navigate(`/${item.id}`);
+      setActiveSection(item.id);
+    } else {
+      // Scroll to section on home page
+      if (location.pathname !== '/' && location.pathname !== '/home') {
+        // First navigate to home, then scroll
+        navigate('/');
+        setTimeout(() => {
+          scrollToSection(item.id);
+        }, 100);
+      } else {
+        scrollToSection(item.id);
+      }
     }
     setMobileMenuOpen(false);
   };
 
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        block: "start",
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <>
-      <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""} ${visible ? "" : "navbar-hidden"}`}>
+      <nav
+        className={`navbar ${scrolled ? "navbar-scrolled" : ""} ${visible ? "" : "navbar-hidden"}`}
+      >
         <div className="navbar-container">
           {/* Logo */}
-          <div className="navbar-logo" onClick={() => scrollToSection("home")}>
+          <div className="navbar-logo" onClick={() => handleNavClick({ id: 'home' })}>
             <div className="logo-symbol">
               <span className="logo-letter">D</span>
               <span className="logo-dot"></span>
@@ -99,7 +120,7 @@ const Navbar = () => {
             {navItems.map((item, index) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => handleNavClick(item)}
                 className={`nav-link ${activeSection === item.id ? "active" : ""}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
@@ -115,9 +136,10 @@ const Navbar = () => {
             onClick={() => {
               const email = "devyansh.grover348@gmail.com";
               const subject = "Let's Collaborate!";
-              const body = "Hi Devyansh, I'd like to discuss a project with you.";
+              const body =
+                "Hi Devyansh, I'd like to discuss a project with you.";
               const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(
-                subject
+                subject,
               )}&body=${encodeURIComponent(body)}`;
               window.open(mailtoUrl, "_blank");
             }}
@@ -156,7 +178,8 @@ const Navbar = () => {
             style={{
               width: `${
                 (window.pageYOffset /
-                  (document.documentElement.scrollHeight - window.innerHeight)) *
+                  (document.documentElement.scrollHeight -
+                    window.innerHeight)) *
                 100
               }%`,
             }}
@@ -178,11 +201,13 @@ const Navbar = () => {
             {navItems.map((item, index) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => handleNavClick(item)}
                 className={`mobile-nav-link ${
                   activeSection === item.id ? "active" : ""
                 }`}
-                style={{ animationDelay: mobileMenuOpen ? `${index * 0.05}s` : "0s" }}
+                style={{
+                  animationDelay: mobileMenuOpen ? `${index * 0.05}s` : "0s",
+                }}
               >
                 <span className="mobile-nav-number">0{index + 1}</span>
                 <span className="mobile-nav-label">{item.label}</span>
@@ -196,9 +221,10 @@ const Navbar = () => {
               onClick={() => {
                 const email = "devyansh.grover348@gmail.com";
                 const subject = "Let's Collaborate!";
-                const body = "Hi Devyansh, I'd like to discuss a project with you.";
+                const body =
+                  "Hi Devyansh, I'd like to discuss a project with you.";
                 const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(
-                  subject
+                  subject,
                 )}&body=${encodeURIComponent(body)}`;
                 window.open(mailtoUrl, "_blank");
                 setMobileMenuOpen(false);
