@@ -1,4 +1,4 @@
-import Post from '../models/Post.js';
+import Post from '../models/post.js';
 
 // ─── GET /api/posts ──────────────────────────────────────────────────────────
 // Returns all posts, newest first. Excludes full block content for performance.
