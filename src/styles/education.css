@@ -604,6 +604,19 @@
   .certificate-card {
     padding: 2.5rem 2rem;
   }
+
+  .status-badge {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: 1rem;
+  }
+
+  .certificate-content {
+    padding-top: 0;
+  }
   
   .certificate-seal {
     width: 70px;
@@ -654,6 +667,12 @@
   
   .certificate-card {
     padding: 2rem 1.5rem;
+  }
+
+  .status-badge {
+    margin-bottom: 0.85rem;
+    font-size: 0.65rem;
+    padding: 0.35rem 0.8rem;
   }
   
   .certificate-border {

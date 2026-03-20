@@ -100,6 +100,15 @@
   opacity: 0;
 }
 
+.timeline-item {
+  position: relative;
+  padding-bottom: 2.5rem;
+}
+
+.timeline-item:last-of-type {
+  padding-bottom: 0;
+}
+
 .experience-section.visible .timeline {
   animation: fade-slide-up 1s ease-out 0.8s forwards;
 }
@@ -220,7 +229,7 @@
 }
 
 .experience-section.visible .experience-card {
-  animation: card-slide-in 0.8s ease-out 1s forwards;
+  animation: card-slide-in 0.8s ease-out var(--card-delay, 1s) forwards;
 }
 
 @keyframes card-slide-in {
@@ -554,6 +563,10 @@
   .timeline {
     padding-left: 40px;
   }
+
+  .timeline-item {
+    padding-bottom: 2rem;
+  }
   
   .timeline-line {
     left: 20px;
@@ -633,6 +646,10 @@
   .timeline-line,
   .timeline-dot {
     display: none;
+  }
+
+  .timeline-item {
+    padding-bottom: 1.25rem;
   }
   
   .experience-card {

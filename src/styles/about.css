@@ -26,7 +26,7 @@
   z-index: 10;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 4rem;
+  padding: 0 clamp(1rem, 4vw, 4rem);
 }
 
 /* ==================== HEADER ==================== */
@@ -104,6 +104,7 @@
   grid-template-columns: 450px 1fr;
   gap: 4rem;
   margin-bottom: 5rem;
+  align-items: start;
 }
 
 /* ==================== LEFT COLUMN ==================== */
@@ -112,6 +113,7 @@
   flex-direction: column;
   gap: 2rem;
   opacity: 0;
+  min-width: 0;
 }
 
 .about-section.visible .about-left-column {
@@ -199,6 +201,8 @@
   font-weight: 600;
   color: #E5E5E5;
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  max-width: calc(100% - 2rem);
+  white-space: nowrap;
 }
 
 .status-pulse {
@@ -240,10 +244,12 @@
   margin: 0 0 1rem 0;
 }
 .profile-loader-animation {
-  width: 250px;
-  height: 250px;
+  width: min(250px, 100%);
+  height: auto;
+  aspect-ratio: 1;
   border-radius: 50%;
   animation: pulse 2s ease forwards;
+  margin: 0 auto;
 }
 
 @keyframes pulse {
@@ -320,6 +326,7 @@
 /* ==================== RIGHT COLUMN ==================== */
 .about-right-column {
   opacity: 0;
+  min-width: 0;
 }
 
 .about-section.visible .about-right-column {
@@ -329,6 +336,7 @@
 /* Tab Navigation */
 .tab-navigation {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 2.5rem;
   border-bottom: 1px solid rgba(255, 215, 0, 0.1);
@@ -348,6 +356,8 @@
   color: #999999;
   cursor: pointer;
   transition: all 0.3s ease;
+  flex: 1 1 180px;
+  justify-content: center;
 }
 
 .tab-button::before {
@@ -406,6 +416,7 @@
 /* Tab Content */
 .tab-content {
   min-height: 600px;
+  min-width: 0;
 }
 
 .tab-panel {
@@ -426,6 +437,7 @@
   line-height: 1.8;
   color: #CCCCCC;
   margin-bottom: 1.25rem;
+  overflow-wrap: anywhere;
 }
 
 /* Expertise Section */
@@ -585,6 +597,7 @@
 
 .principle-content {
   flex: 1;
+  min-width: 0;
 }
 
 .principle-title {
@@ -774,6 +787,10 @@
     grid-template-columns: 400px 1fr;
     gap: 3rem;
   }
+
+  .cta-card {
+    padding: 2.5rem 3rem;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -790,6 +807,11 @@
     order: 1;
   }
 
+  .profile-showcase {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
   .quick-stats-grid {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -800,10 +822,6 @@
 }
 
 @media (max-width: 768px) {
-  .about-container {
-    padding: 0 2rem;
-  }
-
   .about-section {
     padding: 5rem 0;
   }
@@ -815,10 +833,33 @@
   .tab-navigation {
     overflow-x: auto;
     scrollbar-width: none;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    padding-bottom: 0.5rem;
   }
 
   .tab-navigation::-webkit-scrollbar {
     display: none;
+  }
+
+  .tab-button {
+    flex: 0 0 auto;
+    padding: 0.9rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .profile-showcase {
+    padding: 1.5rem;
+  }
+
+  .profile-name {
+    font-size: 1.5rem;
+  }
+
+  .profile-status-badge {
+    bottom: 1rem;
+    padding: 0.65rem 1rem;
+    font-size: 0.78rem;
   }
 
   .quick-stats-grid {
@@ -827,6 +868,15 @@
 
   .interests-grid {
     grid-template-columns: 1fr;
+  }
+
+  .panel-text {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .tab-content {
+    min-height: auto;
   }
 
   .cta-card {
@@ -852,20 +902,58 @@
 }
 
 @media (max-width: 480px) {
-  .about-container {
-    padding: 0 1.5rem;
-  }
-
   .section-title {
     font-size: 2.5rem;
+  }
+
+  .label-text {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
   }
 
   .panel-title {
     font-size: 1.5rem;
   }
 
+  .profile-showcase {
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .profile-status-badge {
+    width: calc(100% - 1.5rem);
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.4;
+  }
+
   .quick-stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .stat-card,
+  .interest-card,
+  .principle-card {
+    padding: 1.25rem;
+  }
+
+  .cta-card {
+    padding: 1.75rem 1.25rem;
+    border-radius: 20px;
+  }
+
+  .cta-title {
+    font-size: 1.6rem;
+  }
+
+  .cta-description {
+    font-size: 0.95rem;
+  }
+
+  .cta-button-main {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
   }
 }
 
