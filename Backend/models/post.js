@@ -11,6 +11,7 @@ const BlockSchema = new mongoose.Schema({
 const PostSchema = new mongoose.Schema({
   title: {
     type: String,
+    required : true,
     default: 'Untitled',
     trim: true,
   },
@@ -33,10 +34,9 @@ const PostSchema = new mongoose.Schema({
     default: false,
   },
 }, {
-  timestamps: true, // adds createdAt and updatedAt automatically
+  timestamps: true,
 });
 
-// Auto-generate slug from title before saving
 PostSchema.pre('save', function (next) {
   if (this.isModified('title') || !this.slug) {
     this.slug = this.title
