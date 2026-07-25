@@ -1,5 +1,5 @@
 import "../styles/navbar.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
@@ -9,7 +9,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [visible, setVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollYRef = useRef(0);
 
   const navItems = [
     { id: "home", label: "Home", icon: "◆" },
@@ -26,19 +26,19 @@ const Navbar = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
+      // Scrolled past 50px -> Capsule Mode
       setScrolled(currentScrollY > 50);
 
-      if (currentScrollY < lastScrollY) {
-        setVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setVisible(false);
+      // Scroll direction detection
+      if (currentScrollY <= 50) {
+        setVisible(true); // At top -> Always visible as full navbar
+      } else if (currentScrollY < lastScrollYRef.current) {
+        setVisible(true); // Scrolling up -> Reveal floating capsule
+      } else if (currentScrollY > lastScrollYRef.current && currentScrollY > 100) {
+        setVisible(false); // Scrolling down -> Hide navbar
       }
 
-      if (currentScrollY < 50) {
-        setVisible(true);
-      }
-
-      setLastScrollY(currentScrollY);
+      lastScrollYRef.current = currentScrollY;
 
       // Only track sections on home page
       if (location.pathname === '/' || location.pathname === '/home') {
@@ -49,7 +49,7 @@ const Navbar = () => {
           const element = document.getElementById(section);
           if (element) {
             const rect = element.getBoundingClientRect();
-            if (rect.top <= 100 && rect.bottom >= 100) {
+            if (rect.top <= 120 && rect.bottom >= 120) {
               current = section;
             }
           }
@@ -61,11 +61,11 @@ const Navbar = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, location]);
+  }, [location]);
 
   const handleNavClick = (item) => {
     if (item.isRoute) {
@@ -169,21 +169,6 @@ const Navbar = () => {
             <span className="menu-line line-2"></span>
             <span className="menu-line line-3"></span>
           </button>
-        </div>
-
-        {/* Progress Bar */}
-        <div className="scroll-progress-bar">
-          <div
-            className="scroll-progress-fill"
-            style={{
-              width: `${
-                (window.pageYOffset /
-                  (document.documentElement.scrollHeight -
-                    window.innerHeight)) *
-                100
-              }%`,
-            }}
-          ></div>
         </div>
       </nav>
 

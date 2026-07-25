@@ -1,10 +1,10 @@
 import "../styles/about.css";
 import { useState, useEffect, useRef } from "react";
+import { Code2, Palette, Lightbulb, BookOpen, Users, Zap } from "lucide-react";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeTab, setActiveTab] = useState("story");
-  const [showGif, setShowGif] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -29,21 +29,21 @@ const About = () => {
   }, []);
 
   const tabs = [
-    { id: "story", label: "My Story", icon: "📖" },
-    { id: "passion", label: "Passion", icon: "💡" },
-    { id: "approach", label: "Approach", icon: "🎯" },
+    { id: "story", label: "MY STORY" },
+    { id: "passion", label: "PASSION" },
+    { id: "approach", label: "APPROACH" },
   ];
 
   const highlights = [
     {
-      number: "04+",
+      number: "5+",
       label: "Core Technologies",
-      description: "React • Node • Firebase • AI APIs",
+      description: "React • Next • Node • MongoDB • Express",
     },
     {
-      number: "50+",
-      label: "RESTful APIs created",
-      description: "Smooth Backend Integeration",
+      number: "100+",
+      label: "RESTful APIs Created",
+      description: "Smooth backend integration",
     },
     {
       number: "1000+",
@@ -53,25 +53,25 @@ const About = () => {
     {
       number: "24/7",
       label: "Commitment",
-      description: "Dedicated to excellence",
+      description: "Dedicated to product excellence",
     },
   ];
 
   const expertise = [
     { skill: "React.js & Next.js", level: 95 },
     { skill: "Node.js & Express", level: 90 },
-    { skill: "UI/UX Design", level: 85 },
-    { skill: "Database Design", level: 88 },
-    { skill: "RESTful APIs", level: 92 },
+    { skill: "UI/UX Architecture", level: 85 },
+    { skill: "Database Design & SQL", level: 88 },
+    { skill: "RESTful API Development", level: 92 },
   ];
 
   const interests = [
-    { icon: "💻", title: "Code", desc: "Clean & Scalable" },
-    { icon: "🎨", title: "Design", desc: "Beautiful UIs" },
-    { icon: "🚀", title: "Innovation", desc: "Latest Tech" },
-    { icon: "📚", title: "Learning", desc: "Never Stop" },
-    { icon: "🤝", title: "Collaboration", desc: "Team Player" },
-    { icon: "⚡", title: "Performance", desc: "Optimized" },
+    { Icon: Code2, title: "Engineering", desc: "Clean & Scalable Code" },
+    { Icon: Palette, title: "Aesthetics", desc: "Premium UI/UX Design" },
+    { Icon: Lightbulb, title: "Innovation", desc: "Latest Tech Solutions" },
+    { Icon: BookOpen, title: "Learning", desc: "Never Stop Learning" },
+    { Icon: Users, title: "Collaboration", desc: "Team-First Synergy" },
+    { Icon: Zap, title: "Optimization", desc: "Highly Performant Apps" },
   ];
 
   return (
@@ -81,46 +81,35 @@ const About = () => {
       ref={sectionRef}
     >
       <div className="about-container">
-        {/* Section Header */}
+        {/* Section Header with Big Bold Typography */}
         <div className="about-header">
           <div className="section-label">
             <span className="label-line"></span>
-            <span className="label-text">Get to know me</span>
+            <span className="label-text">GET TO KNOW ME</span>
           </div>
           <h2 className="section-title">
-            <span className="title-line">About</span>
-            <span className="title-line title-highlight">Me</span>
+            ABOUT <span className="title-highlight">ME</span>
           </h2>
         </div>
 
         {/* Main Content Grid */}
         <div className="about-content-grid">
-          {/* Left Column - Profile & Tabs */}
+          {/* Left Column - Profile & Quick Stats */}
           <div className="about-left-column">
-            {/* Profile Card */}
+            {/* Professional Profile Card */}
             <div className="profile-showcase">
               <div className="profile-image-wrapper">
                 <div className="profile-image-border">
-                  {!showGif && (
-                    <div
-                      className="profile-loader-animation"
-                      onAnimationEnd={() => setShowGif(true)}
-                    />
-                  )}
-
-                  {showGif && (
-                    <img
-                      src="https://res.cloudinary.com/drc2tmpf1/image/upload/v1770385586/Visual_data_hwwt2z.gif"
-                      alt="Devyansh Grover"
-                      className="profile-showcase-img"
-                    />
-                  )}
-
+                  <img
+                    src="https://res.cloudinary.com/drc2tmpf1/image/upload/pfpbw2_mab1oq.jpg"
+                    alt="Devyansh Grover"
+                    className="profile-showcase-img"
+                  />
                   <div className="profile-overlay-gradient"></div>
                 </div>
                 <div className="profile-status-badge">
                   <span className="status-pulse"></span>
-                  Available for Projects
+                  <span>AVAILABLE FOR PROJECTS</span>
                 </div>
               </div>
 
@@ -129,12 +118,14 @@ const About = () => {
                 <p className="profile-role">Full-Stack Developer</p>
                 <div className="profile-location">
                   <svg
-                    width="16"
-                    height="16"
+                    width="14"
+                    height="14"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                     <circle cx="12" cy="10" r="3"></circle>
@@ -144,7 +135,7 @@ const About = () => {
               </div>
             </div>
 
-            {/* Quick Stats */}
+            {/* Quick Stats Grid */}
             <div className="quick-stats-grid">
               {highlights.map((item, index) => (
                 <div
@@ -170,7 +161,6 @@ const About = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`tab-button ${activeTab === tab.id ? "active" : ""}`}
                 >
-                  <span className="tab-icon">{tab.icon}</span>
                   <span className="tab-label">{tab.label}</span>
                   <span className="tab-indicator"></span>
                 </button>
@@ -181,7 +171,7 @@ const About = () => {
             <div className="tab-content">
               {activeTab === "story" && (
                 <div className="tab-panel story-panel">
-                  <h3 className="panel-title">Building Digital Excellence</h3>
+                  <h3 className="panel-title">BUILDING DIGITAL EXCELLENCE</h3>
                   <p className="panel-text">
                     I'm a passionate full-stack developer who believes that
                     great software is born from the intersection of elegant
@@ -204,7 +194,7 @@ const About = () => {
 
                   {/* Expertise Bars */}
                   <div className="expertise-section">
-                    <h4 className="expertise-title">Core Expertise</h4>
+                    <h4 className="expertise-title">CORE EXPERTISE</h4>
                     <div className="expertise-bars">
                       {expertise.map((item, index) => (
                         <div
@@ -235,7 +225,7 @@ const About = () => {
 
               {activeTab === "passion" && (
                 <div className="tab-panel passion-panel">
-                  <h3 className="panel-title">What Drives Me</h3>
+                  <h3 className="panel-title">WHAT DRIVES ME</h3>
                   <p className="panel-text">
                     I'm deeply passionate about creating web experiences that
                     make a difference. For me, development isn't just about
@@ -250,26 +240,34 @@ const About = () => {
                     dedication.
                   </p>
 
-                  {/* Interests Grid */}
+                  {/* Interests Grid (Lucide Icons) */}
                   <div className="interests-grid">
-                    {interests.map((interest, index) => (
-                      <div
-                        className="interest-card"
-                        key={index}
-                        style={{ animationDelay: `${index * 0.05}s` }}
-                      >
-                        <div className="interest-icon">{interest.icon}</div>
-                        <div className="interest-title">{interest.title}</div>
-                        <div className="interest-desc">{interest.desc}</div>
-                      </div>
-                    ))}
+                    {interests.map((interest, index) => {
+                      const IconComponent = interest.Icon;
+                      return (
+                        <div
+                          className="interest-card"
+                          key={index}
+                          style={{ animationDelay: `${index * 0.05}s` }}
+                        >
+                          <div className="interest-icon-box">
+                            <IconComponent
+                              size={28}
+                              className="interest-lucide-icon"
+                            />
+                          </div>
+                          <div className="interest-title">{interest.title}</div>
+                          <div className="interest-desc">{interest.desc}</div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
 
               {activeTab === "approach" && (
                 <div className="tab-panel approach-panel">
-                  <h3 className="panel-title">My Development Philosophy</h3>
+                  <h3 className="panel-title">MY DEVELOPMENT PHILOSOPHY</h3>
                   <p className="panel-text">
                     I believe in a user-first approach to development. Every
                     line of code I write, every design decision I make, is

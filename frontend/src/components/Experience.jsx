@@ -82,12 +82,12 @@ const Experience = () => {
             Building real-world solutions and gaining hands-on expertise
           </p>
         </div>
-        <div className="timeline-end">
-          <div className="end-dot"></div>
-          <span className="end-text">Present</span>
-        </div>
-
         <div className="timeline">
+          <div className="timeline-end">
+            <div className="end-dot"></div>
+            <span className="end-text">Present</span>
+          </div>
+
           <div className="timeline-line">
             <div className="timeline-progress"></div>
           </div>

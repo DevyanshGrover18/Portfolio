@@ -91,13 +91,20 @@
   animation: fade-slide-up 0.8s ease-out 0.6s forwards;
 }
 
-/* ==================== TIMELINE ==================== */
+/* ==================== TIMELINE CONTAINER ==================== */
 .timeline {
   position: relative;
   max-width: 900px;
   margin: 0 auto;
-  padding-left: 60px;
+  --timeline-padding: 60px;
+  --line-left: 30px;
+  --dot-size: 60px;
+  padding-left: var(--timeline-padding);
   opacity: 0;
+}
+
+.experience-section.visible .timeline {
+  animation: fade-slide-up 1s ease-out 0.8s forwards;
 }
 
 .timeline-item {
@@ -109,14 +116,10 @@
   padding-bottom: 0;
 }
 
-.experience-section.visible .timeline {
-  animation: fade-slide-up 1s ease-out 0.8s forwards;
-}
-
 /* Timeline Line */
 .timeline-line {
   position: absolute;
-  left: 30px;
+  left: var(--line-left);
   top: 30px;
   bottom: 60px;
   width: 2px;
@@ -144,10 +147,10 @@
 /* ==================== TIMELINE DOT ==================== */
 .timeline-dot {
   position: absolute;
-  left: 0px;
+  left: calc(var(--line-left) - var(--timeline-padding) - var(--dot-size) / 2 + 1px);
   top: 10px;
-  width: 60px;
-  height: 60px;
+  width: var(--dot-size);
+  height: var(--dot-size);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -180,7 +183,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: #FFD700 ;
+  background: #FFD700;
   animation: pulse-dot 2s ease-out infinite 1.5s;
 }
 
@@ -253,7 +256,7 @@
   gap: 2rem;
   margin-bottom: 2rem;
   padding-bottom: 2rem;
-   border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.1);
 }
 
 .header-left {
@@ -407,7 +410,7 @@
 }
 
 .tech-item:hover {
-   background: rgba(255, 215, 0, 0.1);
+  background: rgba(255, 215, 0, 0.1);
   border-color: rgba(255, 215, 0, 0.3);
   transform: translateY(-4px);
 }
@@ -446,22 +449,23 @@
   color: #FFD700;
 }
 
-/* ==================== TIMELINE END ==================== */
+/* ==================== TIMELINE END / PRESENT ==================== */
 .timeline-end {
   position: relative;
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  margin-top: 3rem;
-  padding-left: 0;
+  margin-bottom: 2.5rem;
   opacity: 0;
 }
 
 .experience-section.visible .timeline-end {
-  animation: fade-slide-up 0.8s ease-out 1.8s forwards;
+  animation: fade-slide-up 0.8s ease-out 1s forwards;
 }
 
 .end-dot {
+  position: absolute;
+  left: calc(var(--line-left) - var(--timeline-padding) - 8px + 1px);
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -477,32 +481,7 @@
   color: #999999;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-}
-
-
-
-@keyframes float-orb {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(30px, -30px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-}
-
-@keyframes float-shape {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  33% {
-    transform: translate(20px, -20px) rotate(120deg);
-  }
-  66% {
-    transform: translate(-15px, 15px) rotate(240deg);
-  }
+  padding-left: 1.5rem;
 }
 
 /* ==================== ANIMATIONS ==================== */
@@ -524,17 +503,9 @@
   }
   
   .timeline {
-    padding-left: 50px;
-  }
-  
-  .timeline-line {
-    left: 25px;
-  }
-  
-  .timeline-dot {
-    left: -25px;
-    width: 50px;
-    height: 50px;
+    --timeline-padding: 50px;
+    --line-left: 25px;
+    --dot-size: 50px;
   }
 }
 
@@ -561,7 +532,9 @@
   }
   
   .timeline {
-    padding-left: 40px;
+    --timeline-padding: 40px;
+    --line-left: 20px;
+    --dot-size: 40px;
   }
 
   .timeline-item {
@@ -569,20 +542,8 @@
   }
   
   .timeline-line {
-    left: 20px;
     top: 24px;
     bottom: 48px;
-  }
-  
-  .timeline-dot {
-    left: -2px;
-    width: 40px;
-    height: 40px;
-  }
-  
-  .dot-inner {
-    width: 18px;
-    height: 18px;
   }
   
   .experience-card {
@@ -614,11 +575,6 @@
   .tech-stack-grid {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   }
-
-  .timeline-end {
-    gap: 1rem;
-    margin-top: 2rem;
-  }
 }
 
 @media (max-width: 480px) {
@@ -644,7 +600,8 @@
   }
 
   .timeline-line,
-  .timeline-dot {
+  .timeline-dot,
+  .end-dot {
     display: none;
   }
 
@@ -713,6 +670,7 @@
 
   .end-text {
     font-size: 0.8rem;
+    padding-left: 0;
   }
 }
 
