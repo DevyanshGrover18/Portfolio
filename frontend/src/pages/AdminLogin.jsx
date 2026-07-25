@@ -19,7 +19,7 @@ const AdminLogin = () => {
   const [pin, setPin] = useState("");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const targetPath = location.state?.from?.pathname || "/admin/blogs";
+  const targetPath = location.state?.from?.pathname || "/admin";
 
   const slotCount = useMemo(() => PIN_LENGTH, []);
 
