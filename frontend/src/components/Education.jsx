@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import "../styles/education.css";
+import { usePortfolioContent } from "../hooks/usePortfolioContent";
 
 const Education = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,7 +27,7 @@ const Education = () => {
     };
   }, []);
 
-  const education = [
+  const fallbackEducation = [
     {
       id: 1,
       degree: "B.Tech in Electronics and Communication",
@@ -55,6 +56,8 @@ const Education = () => {
       level: "Secondary"
     }
   ];
+
+  const education = usePortfolioContent("education", fallbackEducation);
 
   return (
     <section

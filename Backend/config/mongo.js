@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
 
-mongoose.connect(process.env.MONGO_URI).then(()=>{
+export const mongoReady = mongoose.connect(process.env.MONGO_URI).then((connection)=>{
     console.log("Mongo connected")
+    return connection
 }).catch((err)=>{
-    console.log("Mongo connection error:", err)
+    console.error("Mongo connection error:", err.message)
+    return null
 })

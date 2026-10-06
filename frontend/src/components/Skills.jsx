@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import "../styles/skills.css";
 import iconsSvgList from "../utils/iconsSvgList";
+import { usePortfolioContent } from "../hooks/usePortfolioContent";
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,7 +29,7 @@ const Skills = () => {
     };
   }, []);
 
-  const skills = [
+  const fallbackSkills = [
     { name: "HTML", icon: "html", category: "frontend", level: "Expert" },
     { name: "CSS", icon: "css", category: "frontend", level: "Expert" },
     { name: "JavaScript", icon: "js", category: "frontend", level: "Expert" },
@@ -85,6 +86,8 @@ const Skills = () => {
       level: "Intermediate",
     },
   ];
+
+  const skills = usePortfolioContent("skills", fallbackSkills);
 
   const categories = [
     { id: "all", label: "All Skills", icon: "🎯" },

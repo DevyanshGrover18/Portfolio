@@ -19,6 +19,11 @@ const PostSchema = new mongoose.Schema({
     type: String,
     default: '',
   },
+  excerpt: { type: String, default: '', trim: true },
+  tags: { type: [String], default: [] },
+  category: { type: String, default: '', trim: true },
+  author: { type: String, default: '', trim: true },
+  publishedAt: { type: Date },
   blocks: {
     type: [BlockSchema],
     default: [],
@@ -47,6 +52,8 @@ PostSchema.pre('save', function (next) {
       .replace(/-+/g, '-')
       + '-' + Date.now();
   }
+  if (this.published && !this.publishedAt) this.publishedAt = new Date();
+  if (!this.published) this.publishedAt = undefined;
   next();
 });
 

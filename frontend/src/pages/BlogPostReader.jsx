@@ -80,7 +80,7 @@ const BlogPostReader = () => {
       return null;
     });
 
-  const getExcerpt = (blocks = []) => {
+  /* const getExcerpt = (blocks = []) => {
     const para = blocks.find(b => b.type === 'paragraph' && b.content);
     if (!para?.content?.content) return '';
     const texts = [];
@@ -93,7 +93,7 @@ const BlogPostReader = () => {
     walk(para.content.content);
     const full = texts.join(' ');
     return full.length > 120 ? full.slice(0, 120).trimEnd() + '…' : full;
-  };
+  }; */
 
   if (loading) return (
     <div className="blogpost_page">

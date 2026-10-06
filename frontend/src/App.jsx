@@ -4,10 +4,10 @@ import Home from "./pages/Home";
 import Blogs from "./pages/Blogs";
 import ScrollToTop from "./components/ScrollToTop";
 import BlogEditor from "./pages/BlogEditor";
-import AdminBlogs from "./pages/AdminBlogs";
 import BlogPostReader from "./pages/BlogPostReader";
 import AdminLogin from "./pages/AdminLogin";
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
+import AdminContent from "./pages/AdminContent";
 
 const App = () => {
   return (
@@ -19,7 +19,9 @@ const App = () => {
           <Route path="/blogs/:id" element={<BlogPostReader />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route element={<ProtectedAdminRoute />}>
-            <Route path="/admin" element={<AdminBlogs />} />
+            <Route path="/admin" element={<AdminContent />} />
+            <Route path="/admin/blogs" element={<AdminContent />} />
+            <Route path="/admin/content" element={<AdminContent />} />
             <Route path="/admin/editor" element={<BlogEditor />} />
             <Route path="/admin/editor/:id" element={<BlogEditor />} />
           </Route>

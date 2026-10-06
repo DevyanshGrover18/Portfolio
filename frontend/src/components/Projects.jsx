@@ -1,6 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import "../styles/projects.css";
+import { usePortfolioContent } from "../hooks/usePortfolioContent";
 import iconsSvgList from "../utils/iconsSvgList";
+
+const ProjectImage = ({ src, alt, className = "" }) => {
+  const [failed, setFailed] = useState(!src);
+
+  if (failed) {
+    return <div className={`${className} project-image-fallback`} role="img" aria-label={alt}><span>{alt || "Project image"}</span></div>;
+  }
+
+  return <img src={src} alt={alt} className={className} onError={() => setFailed(true)} />;
+};
 
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -37,7 +48,7 @@ const Projects = () => {
     return () => window.removeEventListener("keydown", handleEscape);
   }, []);
 
-  const projects = [
+  const fallbackProjects = [
     {
       id: 1,
       title: "Mera AI",
@@ -218,6 +229,8 @@ const Projects = () => {
     },
   ];
 
+  const projects = usePortfolioContent("projects", fallbackProjects);
+
   const getTechIcon = (tech) => {
     return iconsSvgList[tech] || null;
   };
@@ -249,13 +262,13 @@ const Projects = () => {
         <div className="bento-grid">
           {projects.map((project, index) => (
             <div
-              key={project.id}
-              className="bento-item"
+              key={project._contentId || project.id || `${project.title}-${index}`}
+              className={`bento-item ${project.featured ? "bento-item--featured" : ""}`}
               style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => setSelectedProject(project)}
             >
               <div className="bento-image">
-                <img src={project.image} alt={project.title} />
+                <ProjectImage src={project.image} alt={project.title} />
                 <div className="bento-overlay"></div>
               </div>
 
@@ -308,7 +321,7 @@ const Projects = () => {
             </button>
 
             <div className="modal-image">
-              <img src={selectedProject.image} alt={selectedProject.title} />
+              <ProjectImage src={selectedProject.image} alt={selectedProject.title} />
             </div>
 
             <div className="modal-body">

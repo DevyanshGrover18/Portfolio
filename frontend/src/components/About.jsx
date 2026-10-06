@@ -1,11 +1,14 @@
 import "../styles/about.css";
 import { useState, useEffect, useRef } from "react";
 import { Code2, Palette, Lightbulb, BookOpen, Users, Zap } from "lucide-react";
+import { usePortfolioContent } from "../hooks/usePortfolioContent";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeTab, setActiveTab] = useState("story");
   const sectionRef = useRef(null);
+  const managedAboutItems = usePortfolioContent("about", []);
+  const managedAbout = managedAboutItems[0] || {};
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -73,6 +76,8 @@ const About = () => {
     { Icon: Users, title: "Collaboration", desc: "Team-First Synergy" },
     { Icon: Zap, title: "Optimization", desc: "Highly Performant Apps" },
   ];
+  const displayedHighlights = managedAbout.highlights?.length ? managedAbout.highlights : highlights;
+  const displayedExpertise = managedAbout.expertise?.length ? managedAbout.expertise : expertise;
 
   return (
     <section
@@ -114,8 +119,8 @@ const About = () => {
               </div>
 
               <div className="profile-info-card">
-                <h3 className="profile-name">Devyansh Grover</h3>
-                <p className="profile-role">Full-Stack Developer</p>
+                <h3 className="profile-name">{managedAbout.profileName || "Devyansh Grover"}</h3>
+                <p className="profile-role">{managedAbout.profileRole || "Full-Stack Developer"}</p>
                 <div className="profile-location">
                   <svg
                     width="14"
@@ -130,14 +135,14 @@ const About = () => {
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                     <circle cx="12" cy="10" r="3"></circle>
                   </svg>
-                  <span>India</span>
+                  <span>{managedAbout.location || "India"}</span>
                 </div>
               </div>
             </div>
 
             {/* Quick Stats Grid */}
             <div className="quick-stats-grid">
-              {highlights.map((item, index) => (
+              {displayedHighlights.map((item, index) => (
                 <div
                   className="stat-card"
                   key={index}
@@ -171,12 +176,9 @@ const About = () => {
             <div className="tab-content">
               {activeTab === "story" && (
                 <div className="tab-panel story-panel">
-                  <h3 className="panel-title">BUILDING DIGITAL EXCELLENCE</h3>
+                  <h3 className="panel-title">{managedAbout.storyTitle || "BUILDING DIGITAL EXCELLENCE"}</h3>
                   <p className="panel-text">
-                    I'm a passionate full-stack developer who believes that
-                    great software is born from the intersection of elegant
-                    code, thoughtful design, and genuine care for the user
-                    experience.
+                    {managedAbout.story || "I'm a passionate full-stack developer who believes that great software is born from the intersection of elegant code, thoughtful design, and genuine care for the user experience."}
                   </p>
                   <p className="panel-text">
                     My journey into web development started with a curiosity
@@ -196,7 +198,7 @@ const About = () => {
                   <div className="expertise-section">
                     <h4 className="expertise-title">CORE EXPERTISE</h4>
                     <div className="expertise-bars">
-                      {expertise.map((item, index) => (
+                      {displayedExpertise.map((item, index) => (
                         <div
                           className="expertise-item"
                           key={index}
@@ -225,7 +227,7 @@ const About = () => {
 
               {activeTab === "passion" && (
                 <div className="tab-panel passion-panel">
-                  <h3 className="panel-title">WHAT DRIVES ME</h3>
+                  <h3 className="panel-title">{managedAbout.passionTitle || "WHAT DRIVES ME"}</h3>
                   <p className="panel-text">
                     I'm deeply passionate about creating web experiences that
                     make a difference. For me, development isn't just about
@@ -267,7 +269,7 @@ const About = () => {
 
               {activeTab === "approach" && (
                 <div className="tab-panel approach-panel">
-                  <h3 className="panel-title">MY DEVELOPMENT PHILOSOPHY</h3>
+                  <h3 className="panel-title">{managedAbout.approachTitle || "MY DEVELOPMENT PHILOSOPHY"}</h3>
                   <p className="panel-text">
                     I believe in a user-first approach to development. Every
                     line of code I write, every design decision I make, is

@@ -6,6 +6,7 @@ import emailRouter from "./routes/emailRoute.js";
 import postRouter from "./routes/postRoutes.js";
 import adminRouter from "./routes/adminRoutes.js";
 import adminPostRouter from "./routes/adminPostRoutes.js";
+import portfolioContentRouter, { adminPortfolioContentRouter } from "./routes/portfolioContentRoutes.js";
 
 const PORT = 8000;
 const app = express();
@@ -17,6 +18,8 @@ app.use("/api/send-email", emailRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/admin/posts", adminPostRouter);
+app.use("/api/content", portfolioContentRouter);
+app.use("/api/admin/content", adminPortfolioContentRouter);
 
 app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'Server is running', timestamp: new Date().toISOString() });
@@ -36,6 +39,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log("Server Running");
 });

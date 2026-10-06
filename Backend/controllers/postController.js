@@ -67,9 +67,9 @@ export const getPost = async (req, res) => {
 // Creates a new post
 export const createPost = async (req, res) => {
   try {
-    const { title, coverImage, blocks, published } = req.body;
+    const { title, slug, coverImage, excerpt, tags, category, author, publishedAt, blocks, published } = req.body;
 
-    const post = new Post({ title, coverImage, blocks, published });
+    const post = new Post({ title, slug, coverImage, excerpt, tags, category, author, publishedAt, blocks, published });
     await post.save();
 
     res.status(201).json({ success: true, data: post });
@@ -85,7 +85,7 @@ export const createPost = async (req, res) => {
 // Fully updates a post
 export const updatePost = async (req, res) => {
   try {
-    const { title, coverImage, blocks, published } = req.body;
+    const { title, slug, coverImage, excerpt, tags, category, author, publishedAt, blocks, published } = req.body;
 
     const post = await Post.findById(req.params.id);
     if (!post) {
@@ -98,8 +98,14 @@ export const updatePost = async (req, res) => {
       // Trigger pre-save hook to regenerate slug
       post.slug = undefined;
     }
+    if (slug !== undefined) post.slug = slug;
 
     if (coverImage !== undefined) post.coverImage = coverImage;
+    if (excerpt !== undefined) post.excerpt = excerpt;
+    if (tags !== undefined) post.tags = tags;
+    if (category !== undefined) post.category = category;
+    if (author !== undefined) post.author = author;
+    if (publishedAt !== undefined) post.publishedAt = publishedAt;
     if (blocks !== undefined) post.blocks = blocks;
     if (published !== undefined) post.published = published;
 

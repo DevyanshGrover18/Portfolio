@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../styles/experience.css";
 import iconsSvgList from "../utils/iconsSvgList";
+import { usePortfolioContent } from "../hooks/usePortfolioContent";
 
 const Experience = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,7 +28,7 @@ const Experience = () => {
     };
   }, []);
 
-  const experiences = [
+  const fallbackExperiences = [
     {
       id: 1,
       jobTitle: "Full Stack Developer",
@@ -60,6 +61,7 @@ const Experience = () => {
     },
   ];
 
+  const experiences = usePortfolioContent("experience", fallbackExperiences);
   const getTechIcon = (tech) => iconsSvgList[tech] || null;
 
   return (

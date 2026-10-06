@@ -207,6 +207,7 @@ const AdminBlogs = () => {
               <LogOut size={16} />
               Logout
             </button>
+            <button className="admin_blog_logout-btn" onClick={() => navigate("/admin/content")}>Portfolio Content</button>
             <button className="admin_blog_new-btn" onClick={() => navigate("/admin/editor")}>
               <Plus size={18} />
               New Post

@@ -1,10 +1,16 @@
 // Validates incoming post body before hitting the controller
 export const validatePost = (req, res, next) => {
-  const { title, blocks } = req.body;
+  const { title, slug, excerpt, tags, category, author, blocks } = req.body;
   const errors = [];
 
   if (title !== undefined && typeof title !== 'string') {
     errors.push('title must be a string');
+  }
+  for (const [field, value] of Object.entries({ slug, excerpt, category, author })) {
+    if (value !== undefined && typeof value !== 'string') errors.push(`${field} must be a string`);
+  }
+  if (tags !== undefined && (!Array.isArray(tags) || tags.some((tag) => typeof tag !== 'string'))) {
+    errors.push('tags must be an array of strings');
   }
 
   if (blocks !== undefined) {
